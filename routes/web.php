@@ -19,9 +19,14 @@ Route::get('/', function () {
   return "Bienvenidos a Laravel";
 });
 
-Route::get('/movies', [MoviesController::class, 'index']);
+Route::get('/movies', [MoviesController::class, 'index'])->name('indexMovies');
 
-Route::get('movies/create', [MoviesController::class, 'create']);
+Route::get('movies/create', [MoviesController::class, 'create'])->name('createMovie');
 
 Route::get('/movies/{name_movie}/{category?}', [MoviesController::class, 'help']);
 
+Route::post('movies/store', [MoviesController::class, 'store'])->name('storeMovie');
+
+Route::get('/edit/{movie_id}', [MoviesController::class, 'edit'])->name('editMovie');
+
+Route::post('movies/editMovie', [MoviesController::class, 'editMovie'])->name('updateMovie');

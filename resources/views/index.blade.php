@@ -14,7 +14,13 @@
     @empty
     <p>No hay datos para mostrar.</p>
     @endforelse --}}
-    
+    <button>
+      <a href="{{ route('createMovie') }}">Create A Movie</a>
+    </button>
+    <br>
+    <br>
+
+
     <table>
       <thead>
         <tr>
@@ -23,6 +29,7 @@
           <th>CATEGORIA ID</th>
           <th>CREADO</th>
           <th>ESTADO</th>
+          <th>EDITAR</th>
         </tr>
       </thead>
       <tbody>
@@ -39,7 +46,12 @@
               <span style="color: red">Inactivo</span>
             @endif
           </th>
-        </tr>
+          <th>
+            <button>
+              <a href="{{ route('editMovie', $movie->id) }}">Edit Movie</a>
+            </button>
+          </th>
+        </tr>       
         @empty
         <tr>
           <th>Sin peliculas.</th>
