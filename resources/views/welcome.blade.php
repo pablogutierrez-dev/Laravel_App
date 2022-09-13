@@ -19,7 +19,7 @@
   </nav>
   <main>
     <section class="banner__section">
-      <h1>AÑADE TUS PELICULAS FAVORITAS!</h1>
+      <h1>AÑADE TUS PELICULAS FAVORITAS</h1>
       <button class="addmovie__button">
         <a href="{{ route('createMovie') }}">Añadir una pelicula</a>
       </button>
