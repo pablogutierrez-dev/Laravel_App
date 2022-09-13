@@ -19,7 +19,7 @@
   </nav>
   <main>
     <section class="banner__section">
-      <h1>LISTADO DE PELICULAS</h1>
+      <h1>LISTADO DE CATEGORIAS</h1>
       <button class="addmovie__button">
         <a href="{{ route('createMovie') }}">Añadir una pelicula</a>
       </button>
@@ -27,29 +27,16 @@
         <thead class="movies__header">
           <tr class="movies__row">
             <th class="movies__head">NOMBRE</th>
-            <th class="movies__head">CATEGORIA</th>
-            <th class="movies__head">EDITAR / ELIMINAR</th>
+            <th class="movies__head">DESCRIPCION</th>
           </tr>
         </thead>
         <tbody>
-          @forelse ($moviesList as $movie)
+          @foreach ($categoriesList as $category)
           <tr class="movies__row">
-            <th class="movies__input">{{$movie->name}}</th>
-            <th class="movies__input">{{$movie->category_id}}</th>
-            <th class="movies__input">
-              <button class="movies__button">
-                <a href="{{ route('editMovie', $movie->id) }}">Editar</a>
-              </button>
-              <button class="movies__button">
-                <a href="{{ route('deleteMovie', $movie->id) }}">Eliminar</a>
-              </button>
-            </th>
+            <th class="movies__input">{{$category->name}}</th>
+            <th class="movies__input">{{$category->description}}</th>
           </tr>       
-          @empty
-          <tr>
-            <th>Sin peliculas.</th>
-          </tr>
-          @endforelse
+          @endforeach
         </tbody>
       </table>
     </section>
@@ -59,9 +46,7 @@
     <li>{{$item}}</li> 
     @empty
     <p>No hay datos para mostrar.</p>
-    @endforelse --}}
-    
-    
-    
+    @endforelse --}}    
   </body>
   </html>
+  

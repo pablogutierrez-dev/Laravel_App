@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Movie;
+use App\Mail\MoviesMail;
 use App\Models\Category;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreMovie;
+/* use Illuminate\Support\Facades\Mail; */
 
 class MoviesController extends Controller
 {
@@ -22,33 +24,28 @@ class MoviesController extends Controller
     return view('create', ['moviesCategories' => $categories]);
   }
   
-  public function help($name_movie, $category = null) {
-    
-    $date = Now();
-    return view ('show', [
-      'nameMovie' => $name_movie, 
-      'categoryMovie' => $category,
-      'dateMovie' => $date]);   
-  }
-    
   public function store(StoreMovie $request) {
-
+    
    /*  $request->validate ([
       'name_movie' => 'required|min:2'
     ]); */
-    /* 
+    
     $movie = new Movie;
     $movie->name = $request->name;
     $movie->category_id = $request->category_id;
     $movie->active = 1;
-    $movie->save(); */
+    $movie->save();
 
-    /* Movie::create([
+   /*  Movie::create([
       'name' => $request->name,
       'category_id' => $request->category_id,
     ]); */
 
-    Movie::create($request->all());
+    /* Movie::create($request->all()); */
+
+    /* foreach (['pablo.gutierrez.pruebas@gmail.com'] as $recipient) {
+      Mail::to($recipient)->send(new MoviesMail());
+    } */
 
     return redirect()->route('indexMovies');
   } 
@@ -59,15 +56,21 @@ class MoviesController extends Controller
     return view('edit', ['moviesCategories' => $categories, 'movie' => $movie]);
   }
 
-  public function editMovie(Request $request) {
+  public function update (StoreMovie $request) {
 
     $movie = Movie::find($request->movie_id);
-    $movie->name = $request->name_movie;
+    $movie->name = $request->name;
     $movie->category_id = $request->category_id;
     $movie->active = 1;
     $movie->save();
 
     return redirect()->route('indexMovies');
   } 
+
+  public function delete ($movie_id) {
+    $movie = Movie::find($movie_id);
+    $movie->delete();
+    return redirect()->route('indexMovies');
+  }
 }
   

@@ -9,5 +9,6 @@ class Movie extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'category_id'];
+    //protected $fillable = ['name', 'category_id'];
+    protected $guarded = ['token'];
 }

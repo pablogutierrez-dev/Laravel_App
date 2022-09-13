@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MoviesController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,18 +16,19 @@ use App\Http\Controllers\MoviesController;
 */
 
 Route::get('/', function () {
-  /* return view('welcome'); */
-  return "Bienvenidos a Laravel";
+  return view('welcome');
 });
 
 Route::get('/movies', [MoviesController::class, 'index'])->name('indexMovies');
 
-Route::get('movies/create', [MoviesController::class, 'create'])->name('createMovie');
+Route::get('/movies/create', [MoviesController::class, 'create'])->name('createMovie');
 
-Route::get('/movies/{name_movie}/{category?}', [MoviesController::class, 'help']);
-
-Route::post('movies/store', [MoviesController::class, 'store'])->name('storeMovie');
+Route::post('/movies/store', [MoviesController::class, 'store'])->name('storeMovie');
 
 Route::get('/edit/{movie_id}', [MoviesController::class, 'edit'])->name('editMovie');
 
-Route::post('movies/editMovie', [MoviesController::class, 'editMovie'])->name('updateMovie');
+Route::post('/movies/update', [MoviesController::class, 'update'])->name('updateMovie');
+
+Route::get('/delete/{movie_id}', [MoviesController::class, 'delete'])->name('deleteMovie');
+
+Route::resource('/categories', CategoryController::class);
