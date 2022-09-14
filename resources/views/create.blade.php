@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/637ee434dc.js" crossorigin="anonymous"></script>
   <title>Pagina de Creacion de Peliculas</title>
 </head>
@@ -20,9 +24,9 @@
   <main>
     <section class="banner__section banner--form">
       <h1>Añade tu pelicula!</h1>
-      <button class="addmovie__button">
-        <a href="{{ route('indexMovies') }}">Go To Movies List</a>
-      </button>
+      {{-- <button class="addmovie__button">
+        <a href="{{ route('indexMovies') }}">Lista General de Peliculas</a>
+      </button> --}}
       
       <form action="{{ route('storeMovie') }}" method="POST" class="form">
         @csrf
